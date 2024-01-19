@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/core/colors.dart';
 import 'package:flutter_application_1/core/constants.dart';
 import 'package:flutter_application_1/presentation/student%20detail/widgets/custom_material_button.dart';
 import 'package:flutter_application_1/presentation/student%20detail/widgets/detail_section.dart';
@@ -21,6 +22,7 @@ class ScreenStudentDetail extends StatelessWidget {
         floatingActionButton: Padding(
           padding: EdgeInsets.zero,
           child: Container(
+            color: kWhiteColor,
             padding: EdgeInsets.zero,
             width: kGetWidth,
             height: kGetHeight * 0.075,

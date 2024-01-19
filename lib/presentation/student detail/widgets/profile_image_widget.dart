@@ -14,7 +14,7 @@ class DetailProfileImageWidget extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          height: kGetHeight * 0.4,
+          height: kGetHeight * 0.42,
           decoration: const BoxDecoration(
             color: kDarkBlue,
             image: DecorationImage(
