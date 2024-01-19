@@ -8,23 +8,28 @@ import 'package:flutter_application_1/presentation/widgets/heading.dart';
 import 'package:get/get.dart';
 
 Column otherDetailSection() {
-  return Column(
+  return const Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      subHeading('Other details:'),
-      const CustomTextFieldWidget(
+      SubHeadingWidget(
+        text: 'Other details:',
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+        color: kBlackColor,
+      ),
+      CustomTextFieldWidget(
         labelText: 'Department',
       ),
-      const CustomTextFieldWidget(
+      CustomTextFieldWidget(
         labelText: 'Admission date',
       ),
-      const CustomTextFieldWidget(
+      CustomTextFieldWidget(
         labelText: 'Student ID',
       ),
-      const CustomTextFieldWidget(
+      CustomTextFieldWidget(
         labelText: 'Roll no.',
       ),
-      const CustomTextFieldWidget(
+      CustomTextFieldWidget(
         labelText: 'Class',
       ),
     ],
@@ -32,24 +37,32 @@ Column otherDetailSection() {
 }
 
 Column personalInfoSection() {
-  return Column(
+  return const Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
-      subHeading('Personal information'),
-      const CustomTextFieldWidget(
+      SubHeadingWidget(
+        text: 'Personal information',
+        fontSize: 14,
+        fontWeight: FontWeight.w500,
+        color: kBlackColor,
+      ),
+      CustomTextFieldWidget(
         labelText: 'Full name',
       ),
-      const CustomTextFieldWidget(
+      CustomTextFieldWidget(
         labelText: 'Date of Birth',
       ),
-      const CustomTextFieldWidget(
+      CustomTextFieldWidget(
         labelText: 'Gender',
       ),
-      const CustomTextFieldWidget(
+      CustomTextFieldWidget(
         labelText: 'Phone number',
       ),
-      const CustomTextFieldWidget(
-        labelText: 'Address',
+      CustomTextFieldWidget(
+        labelText: 'Email Address',
+      ),
+      CustomTextFieldWidget(
+        labelText: 'Home Address',
       ),
     ],
   );

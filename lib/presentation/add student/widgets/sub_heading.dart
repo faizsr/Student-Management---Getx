@@ -1,12 +1,28 @@
 import 'package:flutter/material.dart';
 
-Text subHeading(String text) {
-  return Text(
-    text,
-    style: const TextStyle(
-      fontWeight: FontWeight.w500,
-      color: Colors.black,
-      fontSize: 14,
-    ),
-  );
+class SubHeadingWidget extends StatelessWidget {
+  const SubHeadingWidget({
+    super.key,
+    required this.text,
+    required this.fontSize,
+    required this.fontWeight,
+    required this.color,
+  });
+
+  final String text;
+  final double fontSize;
+  final FontWeight fontWeight;
+  final Color color;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      text,
+      style: TextStyle(
+        fontWeight: fontWeight,
+        color: color,
+        fontSize: fontSize,
+      ),
+    );
+  }
 }
