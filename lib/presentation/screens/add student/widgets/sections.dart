@@ -24,24 +24,59 @@ Column otherDetailSection({
         color: kBlackColor,
       ),
       CustomTextFieldWidget(
+        textInputType: TextInputType.text,
         controller: departmentController,
         labelText: 'Department',
+        validator: (value) {
+          if (value!.isEmpty) {
+            return '';
+          }
+          return '';
+        },
       ),
       CustomTextFieldWidget(
+        textInputType: TextInputType.datetime,
         controller: admissonDateController,
         labelText: 'Admission date',
+        validator: (value) {
+          if (value!.isEmpty) {
+            return '';
+          }
+          return '';
+        },
       ),
       CustomTextFieldWidget(
+        textInputType: TextInputType.text,
         controller: studentIdController,
         labelText: 'Student ID',
+        validator: (value) {
+          if (value!.isEmpty) {
+            return '';
+          }
+          return '';
+        },
       ),
       CustomTextFieldWidget(
+        textInputType: TextInputType.number,
         controller: rollNumberController,
         labelText: 'Roll no.',
+        validator: (value) {
+          if (value!.isEmpty) {
+            return '';
+          }
+          return '';
+        },
       ),
       CustomTextFieldWidget(
+        textInputType: TextInputType.number,
         controller: studentClassController,
         labelText: 'Class',
+        validator: (value) {
+          if (value!.isEmpty) {
+            return '';
+          }
+          return '';
+        },
       ),
     ],
   );
@@ -65,28 +100,70 @@ Column personalInfoSection({
         color: kBlackColor,
       ),
       CustomTextFieldWidget(
+        textInputType: TextInputType.text,
         controller: nameController,
         labelText: 'Full name',
+        validator: (value) {
+          if (value!.isEmpty) {
+            return '';
+          }
+          return '';
+        },
       ),
       CustomTextFieldWidget(
+        textInputType: TextInputType.datetime,
         controller: dobController,
         labelText: 'Date of Birth',
+        validator: (value) {
+          if (value!.isEmpty) {
+            return '';
+          }
+          return '';
+        },
       ),
       CustomTextFieldWidget(
+        textInputType: TextInputType.text,
         controller: genderController,
         labelText: 'Gender',
+        validator: (value) {
+          if (value!.isEmpty) {
+            return '';
+          }
+          return '';
+        },
       ),
       CustomTextFieldWidget(
+        textInputType: TextInputType.phone,
         controller: phoneNumberController,
         labelText: 'Phone number',
+        validator: (value) {
+          if (value!.isEmpty) {
+            return '';
+          }
+          return '';
+        },
       ),
       CustomTextFieldWidget(
+        textInputType: TextInputType.emailAddress,
         controller: emailController,
         labelText: 'Email Address',
+        validator: (value) {
+          if (value!.isEmpty) {
+            return '';
+          }
+          return '';
+        },
       ),
       CustomTextFieldWidget(
+        textInputType: TextInputType.streetAddress,
         controller: homeAddressController,
         labelText: 'Home Address',
+        validator: (value) {
+          if (value!.isEmpty) {
+            return '';
+          }
+          return '';
+        },
       ),
     ],
   );
@@ -101,9 +178,7 @@ Row headAndImageSection() {
         children: [
           InkWell(
             onTap: () {
-              // Get.changeTheme(
-              //     Get.isDarkMode ? ThemeData.light() : ThemeData.dark());
-              Get.toNamed('/screen_student_list');
+              Get.back();
             },
             child: Container(
               margin: const EdgeInsets.only(top: 10),

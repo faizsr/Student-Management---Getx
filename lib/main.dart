@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/presentation/screens/add%20student/screen_add_student.dart';
+import 'package:flutter_application_1/presentation/screens/main%20screen/main_screen.dart';
 import 'package:flutter_application_1/presentation/screens/student%20detail/screen_student_detail.dart';
 import 'package:flutter_application_1/presentation/screens/student%20list/screen_student_list.dart';
 import 'package:get/get.dart';
@@ -17,8 +18,13 @@ class MyApp extends StatelessWidget {
       title: 'Student Management',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(fontFamily: 'NetflixSans'),
-      home: ScreenAddStudent(),
+      home: const MainScreen(),
       getPages: [
+        GetPage(
+          name: '/screen_student_add',
+          page: () => ScreenAddStudent(),
+          transition: Transition.fade,
+        ),
         GetPage(
           name: '/screen_student_list',
           page: () => ScreenStudentList(),
@@ -26,7 +32,7 @@ class MyApp extends StatelessWidget {
         ),
         GetPage(
           name: '/screen_student_detail',
-          page: () =>  ScreenStudentDetail(),
+          page: () => ScreenStudentDetail(),
           transition: Transition.fade,
         )
       ],

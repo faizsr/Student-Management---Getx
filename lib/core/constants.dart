@@ -13,3 +13,17 @@ const kDivider = Divider(
 
 final kGetHeight = Get.height;
 final kGetWidth = Get.width;
+
+kGetSnackbar(String message) => Get.rawSnackbar(
+      messageText: Text(
+        message,
+        style: const TextStyle(
+          color: kWhiteColor,
+          fontWeight: FontWeight.w400,
+          fontSize: 13,
+        ),
+      ),
+      margin: const EdgeInsets.all(20),
+      borderRadius: 10,
+      backgroundColor: kBlueGrey,
+    );
