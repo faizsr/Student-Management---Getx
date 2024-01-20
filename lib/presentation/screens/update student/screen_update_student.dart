@@ -6,23 +6,25 @@ import 'package:flutter_application_1/presentation/controllers/student_controlle
 import 'package:flutter_application_1/presentation/screens/add%20student/widgets/sections.dart';
 import 'package:get/get.dart';
 
-class ScreenAddStudent extends StatelessWidget {
-  ScreenAddStudent({super.key});
+class ScreenUpdateStudent extends StatelessWidget {
+  ScreenUpdateStudent({super.key});
 
   final studentController = Get.put(StudentController());
   final _formkey = GlobalKey<FormState>();
 
-  final nameController = TextEditingController();
-  final dobController = TextEditingController();
-  final genderController = TextEditingController();
-  final phoneNumberController = TextEditingController();
-  final emailController = TextEditingController();
-  final homeAddressController = TextEditingController();
-  final departmentController = TextEditingController();
-  final admissonDateController = TextEditingController();
-  final rollNumberController = TextEditingController();
-  final studentClassController = TextEditingController();
-  final studentIdController = TextEditingController();
+  static StudentModel studentModel = Get.arguments;
+
+  final nameController = TextEditingController(text: studentModel.name);
+  final dobController = TextEditingController(text: studentModel.dob);
+  final genderController = TextEditingController(text: studentModel.gender);
+  final phoneNumberController = TextEditingController(text: studentModel.phoneNumber);
+  final emailController = TextEditingController(text: studentModel.emailAddress);
+  final homeAddressController = TextEditingController(text:  studentModel.homeAddress);
+  final departmentController = TextEditingController(text: studentModel.department);
+  final admissonDateController = TextEditingController(text: studentModel.admissionDate);
+  final rollNumberController = TextEditingController(text: studentModel.rollNumber);
+  final studentClassController = TextEditingController(text: studentModel.studentClass);
+  final studentIdController = TextEditingController(text: studentModel.studentId);
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +37,7 @@ class ScreenAddStudent extends StatelessWidget {
             child: ListView(
               children: [
                 kHeight(kGetHeight * 0.04),
-                headAndImageSection(),
+                headAndImageSection(text: 'Edit Student \nInfo?'),
                 kHeight(kGetHeight * 0.04),
                 personalInfoSection(
                   nameController: nameController,
@@ -67,9 +69,9 @@ class ScreenAddStudent extends StatelessWidget {
         ),
         color: kDarkBlue,
         onPressed: () {
-          if (_formkey.currentState!.validate()) {
-            studentController.addStudent(StudentModel(
-              id: null,
+          // if (_formkey.currentState!.validate()) {
+            studentController.updateStudent(StudentModel(
+              id: studentModel.id,
               name: nameController.text,
               dob: dobController.text,
               gender: genderController.text,
@@ -83,9 +85,6 @@ class ScreenAddStudent extends StatelessWidget {
               rollNumber: rollNumberController.text,
               studentClass: studentClassController.text,
             ));
-          } else {
-            kGetSnackbar('All fields should be filled');
-          }
         },
         child: const Text(
           'Create',

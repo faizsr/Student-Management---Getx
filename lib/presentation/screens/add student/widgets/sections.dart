@@ -169,7 +169,7 @@ Column personalInfoSection({
   );
 }
 
-Row headAndImageSection() {
+Row headAndImageSection({String? text}) {
   return Row(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -190,8 +190,8 @@ Row headAndImageSection() {
             ),
           ),
           kHeight(kGetHeight * 0.05),
-          const HeadingWidget(
-            text: 'Add New \nStudent Info?',
+          HeadingWidget(
+            text: text ?? 'Add New \nStudent Info?',
             textColor: kDarkBlue,
           ),
         ],

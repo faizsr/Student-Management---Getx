@@ -47,7 +47,9 @@ class StudentDetailWidget extends StatelessWidget {
                     ),
                   ),
                   kHeight(kGetHeight * 0.02),
-                  const MainTitle(),
+                  MainTitle(
+                    studentModel: studentModel,
+                  ),
                   kHeight(kGetHeight * 0.03),
                   kDivider,
                   kHeight(kGetHeight * 0.02),

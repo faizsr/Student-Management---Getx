@@ -26,7 +26,7 @@ class ScreenStudentList extends StatelessWidget {
               itemBuilder: (context, index) {
                 return InkWell(
                   onTap: () => Get.toNamed('/screen_student_detail',
-                      arguments: studentController.allStudent[index]),
+                      arguments: index),
                   child: ListCardWidget(
                     studentModel: studentController.allStudent[index],
                   ),

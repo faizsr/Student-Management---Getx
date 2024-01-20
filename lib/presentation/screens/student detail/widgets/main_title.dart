@@ -1,27 +1,36 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/colors.dart';
 import 'package:flutter_application_1/core/constants.dart';
+import 'package:flutter_application_1/data/model/student.dart';
 
 class MainTitle extends StatelessWidget {
-  const MainTitle({super.key});
+  const MainTitle({
+    super.key,
+    required this.studentModel,
+  });
+
+  final StudentModel studentModel;
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Column(
+        Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              'James George',
-              style: TextStyle(
+              studentModel.name!,
+              style: const TextStyle(
                 fontSize: 24,
                 fontWeight: FontWeight.w500,
               ),
             ),
             Text(
-              'Department: Science',
-              style: TextStyle(fontSize: 12, color: Colors.grey),
+              'Department: ${studentModel.department}',
+              style: const TextStyle(
+                fontSize: 12,
+                color: Colors.grey,
+              ),
             ),
           ],
         ),

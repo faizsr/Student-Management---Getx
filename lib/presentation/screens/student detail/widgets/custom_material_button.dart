@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/colors.dart';
 import 'package:flutter_application_1/core/constants.dart';
-import 'package:flutter_application_1/data/model/student.dart';
 
 class CustomMaterialButton extends StatelessWidget {
   const CustomMaterialButton({
     super.key,
     required this.text,
-    required this.studentModel,
+    // required this.studentModel,
     required this.onTap,
   });
 
   final String text;
-  final StudentModel studentModel;
+  // final StudentModel studentModel;
   final void Function()? onTap;
 
   @override
