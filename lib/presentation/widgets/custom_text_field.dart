@@ -7,9 +7,11 @@ class CustomTextFieldWidget extends StatelessWidget {
   const CustomTextFieldWidget({
     super.key,
     required this.labelText,
+    required this.controller,
   });
 
   final String labelText;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -18,6 +20,7 @@ class CustomTextFieldWidget extends StatelessWidget {
       child: SizedBox(
         height: Get.height * 0.07,
         child: TextFormField(
+          controller: controller,
           minLines: null,
           style: const TextStyle(fontSize: 15),
           decoration: InputDecoration(
