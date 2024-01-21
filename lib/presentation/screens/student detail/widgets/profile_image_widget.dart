@@ -1,13 +1,19 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/assets.dart';
 import 'package:flutter_application_1/core/colors.dart';
 import 'package:flutter_application_1/core/constants.dart';
+import 'package:flutter_application_1/data/model/student.dart';
 import 'package:get/get.dart';
 
 class DetailProfileImageWidget extends StatelessWidget {
   const DetailProfileImageWidget({
     super.key,
+    required this.studentModel,
   });
+
+  final StudentModel studentModel;
 
   @override
   Widget build(BuildContext context) {
@@ -15,11 +21,10 @@ class DetailProfileImageWidget extends StatelessWidget {
       children: [
         Container(
           height: kGetHeight * 0.42,
-          decoration: const BoxDecoration(
+          decoration: BoxDecoration(
             color: kDarkBlue,
             image: DecorationImage(
-              image: NetworkImage(
-                  'https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg'),
+              image: FileImage(File(studentModel.profile!)),
               fit: BoxFit.cover,
             ),
           ),

@@ -21,7 +21,9 @@ class ScreenStudentDetail extends StatelessWidget {
         body: Obx(
           () => Stack(
             children: [
-              const DetailProfileImageWidget(),
+              DetailProfileImageWidget(
+                studentModel: studentController.allStudent[index],
+              ),
               StudentDetailWidget(
                 studentModel: studentController.allStudent[index],
               ),

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/colors.dart';
@@ -34,11 +36,9 @@ class ListCardWidget extends StatelessWidget {
         padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
         child: Row(
           children: [
-            const CircleAvatar(
+            CircleAvatar(
               radius: 35,
-              backgroundImage: NetworkImage(
-                'https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg',
-              ),
+              backgroundImage: FileImage(File(studentModel.profile!)),
             ),
             kWidth(kGetWidth * 0.03),
             Column(

@@ -169,7 +169,11 @@ Column personalInfoSection({
   );
 }
 
-Row headAndImageSection({String? text}) {
+Row headAndImageSection(
+    {required String text,
+    required void Function()? onTap,
+    required ImageProvider<Object> image}) {
+  print(image);
   return Row(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -191,7 +195,7 @@ Row headAndImageSection({String? text}) {
           ),
           kHeight(kGetHeight * 0.05),
           HeadingWidget(
-            text: text ?? 'Add New \nStudent Info?',
+            text: text,
             textColor: kDarkBlue,
           ),
         ],
@@ -199,25 +203,24 @@ Row headAndImageSection({String? text}) {
       const Spacer(),
       Column(
         children: [
-          Container(
-            width: kGetWidth * 0.38,
-            height: kGetHeight * 0.18,
-            decoration: BoxDecoration(
-              color: kWhiteColor,
-              image: const DecorationImage(
-                image: NetworkImage(
-                    'https://t4.ftcdn.net/jpg/03/64/21/11/360_F_364211147_1qgLVxv1Tcq0Ohz3FawUfrtONzz8nq3e.jpg'),
-                fit: BoxFit.cover,
+          InkWell(
+            onTap: onTap,
+            child: Container(
+              width: kGetWidth * 0.38,
+              height: kGetHeight * 0.18,
+              decoration: BoxDecoration(
+                color: kWhiteColor,
+                borderRadius: BorderRadius.circular(40),
+                image: DecorationImage(image: image, fit: BoxFit.cover),
+                boxShadow: const [
+                  BoxShadow(
+                    blurRadius: 10,
+                    offset: Offset(0, 6),
+                    spreadRadius: 0,
+                    color: Color(0x1A000000),
+                  )
+                ],
               ),
-              borderRadius: BorderRadius.circular(40),
-              boxShadow: const [
-                BoxShadow(
-                  blurRadius: 10,
-                  offset: Offset(0, 6),
-                  spreadRadius: 0,
-                  color: Color(0x1A000000),
-                )
-              ],
             ),
           ),
           const Padding(
