@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/assets.dart';
-import 'package:flutter_application_1/core/colors.dart';
 import 'package:flutter_application_1/core/constants.dart';
 import 'package:get/get.dart';
 
@@ -11,14 +10,21 @@ class MainScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Theme.of(context).colorScheme.background,
         body: Center(
           child: Stack(
             children: [
-              const Positioned(
+              Positioned(
                 top: 20,
                 right: 20,
-                child: CircleAvatar(
-                  child: Icon(Icons.dark_mode_rounded),
+                child: InkWell(
+                  onTap: () {
+                    Get.changeThemeMode(
+                        Get.isDarkMode ? ThemeMode.light : ThemeMode.dark);
+                  },
+                  child: const CircleAvatar(
+                    child: Icon(Icons.dark_mode_rounded),
+                  ),
                 ),
               ),
               Center(
@@ -26,12 +32,12 @@ class MainScreen extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                   children: [
                     kHeight(kGetHeight * 0),
-                    const Text(
+                    Text(
                       'Manage Your Student \nDetails',
                       style: TextStyle(
                         fontSize: 24,
                         fontWeight: FontWeight.w600,
-                        color: kDarkBlue,
+                        color: Theme.of(context).primaryColor,
                       ),
                       textAlign: TextAlign.center,
                     ),
@@ -41,16 +47,18 @@ class MainScreen extends StatelessWidget {
                         Image.asset(
                           management,
                           width: kGetWidth * 0.6,
-                          color: kDarkBlue,
+                          color: Theme.of(context).primaryColor,
                         ),
                         _mainPageBtn(
                           btnText: 'Add New Student',
                           onPressed: () => Get.toNamed('/screen_student_add'),
+                          context: context,
                         ),
                         kHeight(kGetHeight * 0.04),
                         _mainPageBtn(
                           btnText: 'View All Students',
                           onPressed: () => Get.toNamed('/screen_student_list'),
+                          context: context,
                         )
                       ],
                     ),
@@ -65,12 +73,12 @@ class MainScreen extends StatelessWidget {
   }
 
   MaterialButton _mainPageBtn(
-      {required String btnText, required void Function()? onPressed}) {
+      {required String btnText, required void Function()? onPressed, required BuildContext context}) {
     return MaterialButton(
       padding: const EdgeInsets.fromLTRB(100, 15, 100, 15),
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-      color: kDarkBlue,
-      textColor: kWhiteColor,
+      color: Theme.of(context).primaryColor,
+      textColor: Theme.of(context).colorScheme.secondary,
       onPressed: onPressed,
       child: Text(
         btnText,

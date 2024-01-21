@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/core/themes/dark_theme.dart';
+import 'package:flutter_application_1/core/themes/light_theme.dart';
 import 'package:flutter_application_1/presentation/screens/add%20student/screen_add_student.dart';
 import 'package:flutter_application_1/presentation/screens/main%20screen/main_screen.dart';
 import 'package:flutter_application_1/presentation/screens/student%20detail/screen_student_detail.dart';
@@ -18,7 +20,8 @@ class MyApp extends StatelessWidget {
     return GetMaterialApp(
       title: 'Student Management',
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(fontFamily: 'NetflixSans'),
+      theme: lighTheme,
+      darkTheme: darkTheme,
       home: const MainScreen(),
       getPages: [
         GetPage(
