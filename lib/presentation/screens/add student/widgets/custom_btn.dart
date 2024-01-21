@@ -20,8 +20,7 @@ class CustomAddButton extends StatelessWidget {
     required this.studentIdController,
     required this.rollNumberController,
     required this.studentClassController,
-    required this.formkey1,
-    required this.formkey2,
+    required this.formkey,
   });
 
   final TextEditingController nameController;
@@ -35,8 +34,7 @@ class CustomAddButton extends StatelessWidget {
   final TextEditingController studentIdController;
   final TextEditingController rollNumberController;
   final TextEditingController studentClassController;
-  final GlobalKey<FormState> formkey1;
-  final GlobalKey<FormState> formkey2;
+  final GlobalKey<FormState> formkey;
 
   final imagePickerController = Get.put(ImagePickerController());
   final studentController = Get.put(StudentController());
@@ -51,9 +49,12 @@ class CustomAddButton extends StatelessWidget {
       ),
       color: kDarkBlue,
       onPressed: () {
-        if (formkey1.currentState!.validate()) {
+        int id = DateTime.now().millisecondsSinceEpoch;
+        print('id on adding: $id');
+        if (formkey.currentState!.validate() &&
+            imagePickerController.image.value.path != '') {
           studentController.addStudent(StudentModel(
-            id: null,
+            id: id,
             name: nameController.text,
             dob: dobController.text,
             gender: genderController.text,
@@ -70,7 +71,7 @@ class CustomAddButton extends StatelessWidget {
           Get.back();
           kGetSnackbar('New student details added');
         } else {
-          kGetSnackbar('Must select an image');
+          kGetSnackbar('Must fill all field including profile');
         }
       },
       child: const Text(

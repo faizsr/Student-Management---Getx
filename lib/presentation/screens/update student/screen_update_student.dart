@@ -14,73 +14,76 @@ class ScreenUpdateStudent extends StatelessWidget {
 
   final studentController = Get.put(StudentController());
   final imagePickerController = Get.put(ImagePickerController());
+  final formKey = GlobalKey<FormState>();
+  final StudentModel studentModel = Get.arguments;
 
-  final formkey1 = GlobalKey<FormState>();
-  final formkey2 = GlobalKey<FormState>();
-
-  final nameController = TextEditingController(text: Get.arguments.name);
-  final dobController = TextEditingController(text: Get.arguments.dob);
-  final genderController = TextEditingController(text: Get.arguments.gender);
-  final phoneNumberController =
-      TextEditingController(text: Get.arguments.phoneNumber);
-  final emailController =
-      TextEditingController(text: Get.arguments.emailAddress);
-  final homeAddressController =
-      TextEditingController(text: Get.arguments.homeAddress);
-  final departmentController =
-      TextEditingController(text: Get.arguments.department);
-  final admissonDateController =
-      TextEditingController(text: Get.arguments.admissionDate);
-  final rollNumberController =
-      TextEditingController(text: Get.arguments.rollNumber);
-  final studentClassController =
-      TextEditingController(text: Get.arguments.studentClass);
-  final studentIdController =
-      TextEditingController(text: Get.arguments.studentId);
+  final nameController = TextEditingController();
+  final dobController = TextEditingController();
+  final genderController = TextEditingController();
+  final phoneNumberController = TextEditingController();
+  final emailController = TextEditingController();
+  final homeAddressController = TextEditingController();
+  final departmentController = TextEditingController();
+  final admissonDateController = TextEditingController();
+  final rollNumberController = TextEditingController();
+  final studentClassController = TextEditingController();
+  final studentIdController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
+    nameController.text = studentModel.name!;
+    dobController.text = studentModel.dob!;
+    genderController.text = studentModel.gender!;
+    phoneNumberController.text = studentModel.phoneNumber!;
+    emailController.text = studentModel.emailAddress!;
+    departmentController.text = studentModel.department!;
+    rollNumberController.text = studentModel.rollNumber!;
+    studentClassController.text = studentModel.studentClass!;
+
     return Scaffold(
       body: SafeArea(
         child: Padding(
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
-          child: ListView(
-            children: [
-              kHeight(kGetHeight * 0.04),
-              Obx(
-                () => headAndImageSection(
-                  text: 'Edit Student \nInfo',
-                  onTap: () {
-                    imagePickerController.pickImageFromGallery();
-                  },
-                  image: imagePickerController.image.value.path == ''
-                      ? Image.file(
-                          File(Get.arguments.profile),
-                        ).image
-                      : Image.file(
-                          imagePickerController.image.value,
-                        ).image,
+          child: Form(
+            key: formKey,
+            child: ListView(
+              children: [
+                kHeight(kGetHeight * 0.04),
+                Obx(
+                  () => headAndImageSection(
+                    text: 'Edit Student \nInfo',
+                    onTap: () {
+                      imagePickerController.pickImageFromGallery();
+                    },
+                    image: imagePickerController.image.value.path == ''
+                        ? Image.file(
+                            File(Get.arguments.profile),
+                          ).image
+                        : Image.file(
+                            imagePickerController.image.value,
+                          ).image,
+                  ),
                 ),
-              ),
-              kHeight(kGetHeight * 0.04),
-              personalInfoSection(
-                nameController: nameController,
-                dobController: dobController,
-                genderController: genderController,
-                phoneNumberController: phoneNumberController,
-                emailController: emailController,
-                homeAddressController: homeAddressController,
-              ),
-              kHeight(kGetHeight * 0.04),
-              otherDetailSection(
-                departmentController: departmentController,
-                admissonDateController: admissonDateController,
-                rollNumberController: rollNumberController,
-                studentClassController: studentClassController,
-                studentIdController: studentIdController,
-              ),
-              kHeight(kGetHeight * 0.02),
-            ],
+                kHeight(kGetHeight * 0.04),
+                personalInfoSection(
+                  nameController: nameController,
+                  dobController: dobController,
+                  genderController: genderController,
+                  phoneNumberController: phoneNumberController,
+                  emailController: emailController,
+                  homeAddressController: homeAddressController,
+                ),
+                kHeight(kGetHeight * 0.04),
+                otherDetailSection(
+                  departmentController: departmentController,
+                  admissonDateController: admissonDateController,
+                  rollNumberController: rollNumberController,
+                  studentClassController: studentClassController,
+                  studentIdController: studentIdController,
+                ),
+                kHeight(kGetHeight * 0.02),
+              ],
+            ),
           ),
         ),
       ),
@@ -92,25 +95,30 @@ class ScreenUpdateStudent extends StatelessWidget {
         ),
         color: kDarkBlue,
         onPressed: () {
-          studentController.updateStudent(StudentModel(
-            id: Get.arguments.id,
-            name: nameController.text,
-            dob: dobController.text,
-            gender: genderController.text,
-            phoneNumber: phoneNumberController.text,
-            emailAddress: emailController.text,
-            homeAddress: homeAddressController.text,
-            profile: imagePickerController.image.value.path == ''
-                ? Get.arguments.profile
-                : imagePickerController.image.value.path,
-            department: departmentController.text,
-            admissionDate: admissonDateController.text,
-            studentId: studentIdController.text,
-            rollNumber: rollNumberController.text,
-            studentClass: studentClassController.text,
-          ));
-          Get.back();
-          kGetSnackbar('Updated successfully');
+          print('id on updating: ${studentModel.id}');
+          if (formKey.currentState!.validate()) {
+            studentController.updateStudent(StudentModel(
+              id: studentModel.id,
+              name: nameController.text,
+              dob: dobController.text,
+              gender: genderController.text,
+              phoneNumber: phoneNumberController.text,
+              emailAddress: emailController.text,
+              homeAddress: homeAddressController.text,
+              profile: imagePickerController.image.value.path == ''
+                  ? Get.arguments.profile
+                  : imagePickerController.image.value.path,
+              department: departmentController.text,
+              admissionDate: admissonDateController.text,
+              studentId: studentIdController.text,
+              rollNumber: rollNumberController.text,
+              studentClass: studentClassController.text,
+            ));
+            Get.back();
+            kGetSnackbar('Updated successfully');
+          } else {
+            kGetSnackbar('Must fill all fields including image');
+          }
         },
         child: const Text(
           'Update',

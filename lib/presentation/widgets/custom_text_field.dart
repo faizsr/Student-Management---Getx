@@ -9,13 +9,11 @@ class CustomTextFieldWidget extends StatelessWidget {
     required this.labelText,
     required this.controller,
     required this.textInputType,
-    required this.validator,
   });
 
   final String labelText;
   final TextEditingController controller;
   final TextInputType textInputType;
-  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -24,9 +22,14 @@ class CustomTextFieldWidget extends StatelessWidget {
       child: SizedBox(
         height: Get.height * 0.07,
         child: TextFormField(
+          validator: (value) {
+            if (value!.isEmpty) {
+              return '';
+            }
+            return null;
+          },
           keyboardType: textInputType,
           controller: controller,
-          validator: validator,
           style: const TextStyle(fontSize: 15),
           decoration: InputDecoration(
             isDense: true,
@@ -64,14 +67,14 @@ class CustomTextFieldWidget extends StatelessWidget {
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20.0),
               borderSide: const BorderSide(
-                color: Colors.red,
+                color: kDarkBlue,
                 width: 2.0,
               ),
             ),
             focusedErrorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20.0),
               borderSide: const BorderSide(
-                color: Colors.red,
+                color: kDarkBlue,
                 width: 2.0,
               ),
             ),
