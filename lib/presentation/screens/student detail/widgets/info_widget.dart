@@ -44,10 +44,6 @@ class InfoWidget extends StatelessWidget {
           title: 'Email Address',
           subText: studentModel.emailAddress,
         ),
-        _addressListTile(
-          title: 'Home Address',
-          subText: studentModel.emailAddress,
-        ),
         kHeight(kGetHeight * 0.03),
         SubHeadingWidget(
           text: heading2,
@@ -59,10 +55,6 @@ class InfoWidget extends StatelessWidget {
         _detailListTile(
           title: 'Admission Date',
           trailing: studentModel.admissionDate,
-        ),
-        _detailListTile(
-          title: 'Student Id',
-          trailing: studentModel.studentId,
         ),
         _detailListTile(
           title: 'Roll no.',

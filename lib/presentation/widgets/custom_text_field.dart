@@ -24,15 +24,14 @@ class CustomTextFieldWidget extends StatelessWidget {
       child: SizedBox(
         height: Get.height * 0.07,
         child: TextFormField(
-          validator: validator,
           keyboardType: textInputType,
           controller: controller,
-          minLines: null,
+          validator: validator,
           style: const TextStyle(fontSize: 15),
           decoration: InputDecoration(
             isDense: true,
             errorMaxLines: 1,
-            errorText: '',
+            errorText: null,
             errorStyle: const TextStyle(
               height: 0,
               fontSize: 0,
@@ -44,35 +43,35 @@ class CustomTextFieldWidget extends StatelessWidget {
             ),
             labelText: labelText,
             labelStyle: const TextStyle(
-              color: Color(0x66000000),
+              color: kBlueGrey,
               fontWeight: FontWeight.w500,
               fontSize: 14,
             ),
             enabledBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20.0),
               borderSide: const BorderSide(
-                color: kBlackColor,
+                color: kAqua,
                 width: 2.0,
               ),
             ),
             focusedBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20.0),
               borderSide: const BorderSide(
-                color: kBlackColor,
+                color: kAqua,
                 width: 2.0,
               ),
             ),
             errorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20.0),
               borderSide: const BorderSide(
-                color: kLightblack,
+                color: Colors.red,
                 width: 2.0,
               ),
             ),
             focusedErrorBorder: OutlineInputBorder(
               borderRadius: BorderRadius.circular(20.0),
               borderSide: const BorderSide(
-                color: kLightblack,
+                color: Colors.red,
                 width: 2.0,
               ),
             ),

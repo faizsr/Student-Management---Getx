@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/assets.dart';
 import 'package:flutter_application_1/core/colors.dart';
 import 'package:flutter_application_1/core/constants.dart';
+import 'package:flutter_application_1/presentation/controllers/form_controller.dart';
 import 'package:flutter_application_1/presentation/screens/add%20student/widgets/sub_heading.dart';
 import 'package:flutter_application_1/presentation/widgets/custom_text_field.dart';
 import 'package:flutter_application_1/presentation/widgets/heading.dart';
@@ -14,6 +15,7 @@ Column otherDetailSection({
   required TextEditingController rollNumberController,
   required TextEditingController studentClassController,
 }) {
+  final formController = Get.put(FormController());
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
@@ -27,56 +29,19 @@ Column otherDetailSection({
         textInputType: TextInputType.text,
         controller: departmentController,
         labelText: 'Department',
-        validator: (value) {
-          if (value!.isEmpty) {
-            return '';
-          }
-          return '';
-        },
-      ),
-      CustomTextFieldWidget(
-        textInputType: TextInputType.datetime,
-        controller: admissonDateController,
-        labelText: 'Admission date',
-        validator: (value) {
-          if (value!.isEmpty) {
-            return '';
-          }
-          return '';
-        },
-      ),
-      CustomTextFieldWidget(
-        textInputType: TextInputType.text,
-        controller: studentIdController,
-        labelText: 'Student ID',
-        validator: (value) {
-          if (value!.isEmpty) {
-            return '';
-          }
-          return '';
-        },
+        validator: (value) => formController.validateDepartment(value!),
       ),
       CustomTextFieldWidget(
         textInputType: TextInputType.number,
         controller: rollNumberController,
         labelText: 'Roll no.',
-        validator: (value) {
-          if (value!.isEmpty) {
-            return '';
-          }
-          return '';
-        },
+        validator: (value) => formController.validateRollno(value!),
       ),
       CustomTextFieldWidget(
         textInputType: TextInputType.number,
         controller: studentClassController,
         labelText: 'Class',
-        validator: (value) {
-          if (value!.isEmpty) {
-            return '';
-          }
-          return '';
-        },
+        validator: (value) => formController.validateClass(value!),
       ),
     ],
   );
@@ -90,11 +55,12 @@ Column personalInfoSection({
   required TextEditingController emailController,
   required TextEditingController homeAddressController,
 }) {
+  final formController = Get.put(FormController());
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [
       const SubHeadingWidget(
-        text: 'Personal information',
+        text: 'Personal details',
         fontSize: 14,
         fontWeight: FontWeight.w500,
         color: kBlackColor,
@@ -103,67 +69,31 @@ Column personalInfoSection({
         textInputType: TextInputType.text,
         controller: nameController,
         labelText: 'Full name',
-        validator: (value) {
-          if (value!.isEmpty) {
-            return '';
-          }
-          return '';
-        },
+        validator: (value) => formController.validateName(value!),
       ),
       CustomTextFieldWidget(
         textInputType: TextInputType.datetime,
         controller: dobController,
         labelText: 'Date of Birth',
-        validator: (value) {
-          if (value!.isEmpty) {
-            return '';
-          }
-          return '';
-        },
+        validator: (value) => formController.validateDob(value!),
       ),
       CustomTextFieldWidget(
         textInputType: TextInputType.text,
         controller: genderController,
         labelText: 'Gender',
-        validator: (value) {
-          if (value!.isEmpty) {
-            return '';
-          }
-          return '';
-        },
+        validator: (value) => formController.validateGender(value!),
       ),
       CustomTextFieldWidget(
         textInputType: TextInputType.phone,
         controller: phoneNumberController,
         labelText: 'Phone number',
-        validator: (value) {
-          if (value!.isEmpty) {
-            return '';
-          }
-          return '';
-        },
+        validator: (value) => formController.validatePhNumber(value!),
       ),
       CustomTextFieldWidget(
         textInputType: TextInputType.emailAddress,
         controller: emailController,
         labelText: 'Email Address',
-        validator: (value) {
-          if (value!.isEmpty) {
-            return '';
-          }
-          return '';
-        },
-      ),
-      CustomTextFieldWidget(
-        textInputType: TextInputType.streetAddress,
-        controller: homeAddressController,
-        labelText: 'Home Address',
-        validator: (value) {
-          if (value!.isEmpty) {
-            return '';
-          }
-          return '';
-        },
+        validator: (value) => formController.validateEmail(value!),
       ),
     ],
   );
@@ -173,7 +103,6 @@ Row headAndImageSection(
     {required String text,
     required void Function()? onTap,
     required ImageProvider<Object> image}) {
-  print(image);
   return Row(
     crossAxisAlignment: CrossAxisAlignment.start,
     children: [

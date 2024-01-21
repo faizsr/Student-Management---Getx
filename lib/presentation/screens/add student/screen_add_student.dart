@@ -3,6 +3,7 @@ import 'package:flutter_application_1/core/assets.dart';
 import 'package:flutter_application_1/core/colors.dart';
 import 'package:flutter_application_1/core/constants.dart';
 import 'package:flutter_application_1/data/model/student.dart';
+import 'package:flutter_application_1/presentation/controllers/form_controller.dart';
 import 'package:flutter_application_1/presentation/controllers/image_picker_controller.dart';
 import 'package:flutter_application_1/presentation/controllers/student_controller.dart';
 import 'package:flutter_application_1/presentation/screens/add%20student/widgets/sections.dart';
@@ -13,7 +14,7 @@ class ScreenAddStudent extends StatelessWidget {
 
   final studentController = Get.put(StudentController());
   final imagePickerController = Get.put(ImagePickerController());
-  final _formkey = GlobalKey<FormState>();
+  final formController = Get.put(FormController());
 
   final nameController = TextEditingController();
   final dobController = TextEditingController();
@@ -53,30 +54,23 @@ class ScreenAddStudent extends StatelessWidget {
                 ),
               ),
               kHeight(kGetHeight * 0.04),
-              Form(
-                key: _formkey,
-                child: Column(
-                  children: [
-                    personalInfoSection(
-                      nameController: nameController,
-                      dobController: dobController,
-                      genderController: genderController,
-                      phoneNumberController: phoneNumberController,
-                      emailController: emailController,
-                      homeAddressController: homeAddressController,
-                    ),
-                    kHeight(kGetHeight * 0.04),
-                    otherDetailSection(
-                      departmentController: departmentController,
-                      admissonDateController: admissonDateController,
-                      rollNumberController: rollNumberController,
-                      studentClassController: studentClassController,
-                      studentIdController: studentIdController,
-                    ),
-                    kHeight(kGetHeight * 0.02),
-                  ],
-                ),
+              personalInfoSection(
+                nameController: nameController,
+                dobController: dobController,
+                genderController: genderController,
+                phoneNumberController: phoneNumberController,
+                emailController: emailController,
+                homeAddressController: homeAddressController,
               ),
+              kHeight(kGetHeight * 0.04),
+              otherDetailSection(
+                departmentController: departmentController,
+                admissonDateController: admissonDateController,
+                rollNumberController: rollNumberController,
+                studentClassController: studentClassController,
+                studentIdController: studentIdController,
+              ),
+              kHeight(kGetHeight * 0.02),
             ],
           ),
         ),
@@ -89,25 +83,27 @@ class ScreenAddStudent extends StatelessWidget {
         ),
         color: kDarkBlue,
         onPressed: () {
-          // if (_formkey.currentState!.validate()) {
-          studentController.addStudent(StudentModel(
-            id: null,
-            name: nameController.text,
-            dob: dobController.text,
-            gender: genderController.text,
-            phoneNumber: phoneNumberController.text,
-            emailAddress: emailController.text,
-            homeAddress: homeAddressController.text,
-            profile: imagePickerController.image.value.path,
-            department: departmentController.text,
-            admissionDate: admissonDateController.text,
-            studentId: studentIdController.text,
-            rollNumber: rollNumberController.text,
-            studentClass: studentClassController.text,
-          ));
-          // } else {
-          //   kGetSnackbar('All fields should be filled');
-          // }
+          if (imagePickerController.image.value.path != '') {
+            studentController.addStudent(StudentModel(
+              id: null,
+              name: nameController.text,
+              dob: dobController.text,
+              gender: genderController.text,
+              phoneNumber: phoneNumberController.text,
+              emailAddress: emailController.text,
+              homeAddress: homeAddressController.text,
+              profile: imagePickerController.image.value.path,
+              department: departmentController.text,
+              admissionDate: admissonDateController.text,
+              studentId: studentIdController.text,
+              rollNumber: rollNumberController.text,
+              studentClass: studentClassController.text,
+            ));
+            Get.back();
+            kGetSnackbar('New student details added');
+          } else {
+            kGetSnackbar('Must select an image');
+          }
         },
         child: const Text(
           'Create',

@@ -15,7 +15,8 @@ class ScreenUpdateStudent extends StatelessWidget {
   final studentController = Get.put(StudentController());
   final imagePickerController = Get.put(ImagePickerController());
 
-  final _formkey = GlobalKey<FormState>();
+  final formkey1 = GlobalKey<FormState>();
+  final formkey2 = GlobalKey<FormState>();
 
   final nameController = TextEditingController(text: Get.arguments.name);
   final dobController = TextEditingController(text: Get.arguments.dob);
@@ -62,30 +63,23 @@ class ScreenUpdateStudent extends StatelessWidget {
                 ),
               ),
               kHeight(kGetHeight * 0.04),
-              Form(
-                key: _formkey,
-                child: Column(
-                  children: [
-                    personalInfoSection(
-                      nameController: nameController,
-                      dobController: dobController,
-                      genderController: genderController,
-                      phoneNumberController: phoneNumberController,
-                      emailController: emailController,
-                      homeAddressController: homeAddressController,
-                    ),
-                    kHeight(kGetHeight * 0.04),
-                    otherDetailSection(
-                      departmentController: departmentController,
-                      admissonDateController: admissonDateController,
-                      rollNumberController: rollNumberController,
-                      studentClassController: studentClassController,
-                      studentIdController: studentIdController,
-                    ),
-                    kHeight(kGetHeight * 0.02),
-                  ],
-                ),
+              personalInfoSection(
+                nameController: nameController,
+                dobController: dobController,
+                genderController: genderController,
+                phoneNumberController: phoneNumberController,
+                emailController: emailController,
+                homeAddressController: homeAddressController,
               ),
+              kHeight(kGetHeight * 0.04),
+              otherDetailSection(
+                departmentController: departmentController,
+                admissonDateController: admissonDateController,
+                rollNumberController: rollNumberController,
+                studentClassController: studentClassController,
+                studentIdController: studentIdController,
+              ),
+              kHeight(kGetHeight * 0.02),
             ],
           ),
         ),
@@ -98,28 +92,28 @@ class ScreenUpdateStudent extends StatelessWidget {
         ),
         color: kDarkBlue,
         onPressed: () {
-          if (_formkey.currentState!.validate()) {
-            studentController.updateStudent(StudentModel(
-              id: Get.arguments.id,
-              name: nameController.text,
-              dob: dobController.text,
-              gender: genderController.text,
-              phoneNumber: phoneNumberController.text,
-              emailAddress: emailController.text,
-              homeAddress: homeAddressController.text,
-              profile: imagePickerController.image.value.path,
-              department: departmentController.text,
-              admissionDate: admissonDateController.text,
-              studentId: studentIdController.text,
-              rollNumber: rollNumberController.text,
-              studentClass: studentClassController.text,
-            ));
-          } else {
-            kGetSnackbar('message');
-          }
+          studentController.updateStudent(StudentModel(
+            id: Get.arguments.id,
+            name: nameController.text,
+            dob: dobController.text,
+            gender: genderController.text,
+            phoneNumber: phoneNumberController.text,
+            emailAddress: emailController.text,
+            homeAddress: homeAddressController.text,
+            profile: imagePickerController.image.value.path == ''
+                ? Get.arguments.profile
+                : imagePickerController.image.value.path,
+            department: departmentController.text,
+            admissionDate: admissonDateController.text,
+            studentId: studentIdController.text,
+            rollNumber: rollNumberController.text,
+            studentClass: studentClassController.text,
+          ));
+          Get.back();
+          kGetSnackbar('Updated successfully');
         },
         child: const Text(
-          'Create',
+          'Update',
           style: TextStyle(
             color: kWhiteColor,
             fontSize: 15,
