@@ -5,15 +5,34 @@ import 'package:flutter_application_1/data/model/student.dart';
 class StudentRepository {
   DBHelper dbHelper = DBHelper();
 
-  Future<List<StudentModel>> getData() async {
+  Future<List<StudentModel>> getData(String query) async {
     var dbClient = await dbHelper.db;
-    List<Map> maps = await dbClient.query(tableName, columns: ['id', 'name', 'dob', 'gender', 'phoneNumber', 'emailAddress', 'homeAddress', 'profile', 'department', 'admissionDate', 'studentId', 'rollNumber', 'studentClass']);
+    List<Map> maps = await dbClient.query(tableName, columns: [
+      'id',
+      'name',
+      'dob',
+      'gender',
+      'phoneNumber',
+      'emailAddress',
+      'homeAddress',
+      'profile',
+      'department',
+      'admissionDate',
+      'studentId',
+      'rollNumber',
+      'studentClass'
+    ]);
     List<StudentModel> student = [];
 
     for (int i = 0; i < maps.length; i++) {
       student.add(StudentModel.fromMap(maps[i]));
     }
-    return student;
+    return query == ''
+        ? student
+        : student
+            .where((element) =>
+                element.name!.toLowerCase().contains(query.toLowerCase()))
+            .toList();
   }
 
   Future<int> addData(StudentModel studentModel) async {

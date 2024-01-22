@@ -2,11 +2,16 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/assets.dart';
 import 'package:flutter_application_1/core/constants.dart';
+import 'package:flutter_application_1/presentation/controllers/student_controller.dart';
+import 'package:get/get.dart';
+import 'package:get/get_rx/src/rx_workers/utils/debouncer.dart';
 
 class CustomSearchFieldWidget extends StatelessWidget {
-  const CustomSearchFieldWidget({
-    super.key,
-  });
+  CustomSearchFieldWidget({super.key});
+
+  final studentController = Get.put(StudentController());
+  final Debouncer debouncer =
+      Debouncer(delay: const Duration(milliseconds: 500));
 
   @override
   Widget build(BuildContext context) {
@@ -30,9 +35,15 @@ class CustomSearchFieldWidget extends StatelessWidget {
           color: Color(0xFF737373),
         ),
         style: const TextStyle(
-            color: Color(0xFFE6E6E6),
-            letterSpacing: 0.3,
-            fontSize: 16),
+          color: Color(0xFFE6E6E6),
+          letterSpacing: 0.3,
+          fontSize: 16,
+        ),
+        onChanged: (value) {
+          debouncer.call(() {
+            studentController.fetchAllStudent(query: value);
+          });
+        },
       ),
     );
   }

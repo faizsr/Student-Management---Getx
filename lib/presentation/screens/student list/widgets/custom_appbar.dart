@@ -42,7 +42,7 @@ class CustomAppbarWidget extends StatelessWidget {
               ],
             ),
             kHeight(kGetHeight * 0.03),
-            const CustomSearchFieldWidget()
+            CustomSearchFieldWidget()
           ],
         ),
       ),
