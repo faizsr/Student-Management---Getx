@@ -22,12 +22,9 @@ class ScreenUpdateStudent extends StatelessWidget {
   final genderController = TextEditingController();
   final phoneNumberController = TextEditingController();
   final emailController = TextEditingController();
-  final homeAddressController = TextEditingController();
   final departmentController = TextEditingController();
-  final admissonDateController = TextEditingController();
   final rollNumberController = TextEditingController();
   final studentClassController = TextEditingController();
-  final studentIdController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -40,9 +37,9 @@ class ScreenUpdateStudent extends StatelessWidget {
     rollNumberController.text = studentModel.rollNumber!;
     studentClassController.text = studentModel.studentClass!;
 
-    return Scaffold(
-      body: SafeArea(
-        child: Padding(
+    return SafeArea(
+      child: Scaffold(
+        body: Padding(
           padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
           child: Form(
             key: formKey,
@@ -71,60 +68,54 @@ class ScreenUpdateStudent extends StatelessWidget {
                   genderController: genderController,
                   phoneNumberController: phoneNumberController,
                   emailController: emailController,
-                  homeAddressController: homeAddressController,
                 ),
                 kHeight(kGetHeight * 0.04),
                 otherDetailSection(
                   departmentController: departmentController,
-                  admissonDateController: admissonDateController,
                   rollNumberController: rollNumberController,
                   studentClassController: studentClassController,
-                  studentIdController: studentIdController,
                 ),
                 kHeight(kGetHeight * 0.02),
               ],
             ),
           ),
         ),
-      ),
-      floatingActionButton: MaterialButton(
-        minWidth: kGetWidth * 0.25,
-        height: kGetHeight * 0.07,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
-        ),
-        color: kDarkBlue,
-        onPressed: () {
-          print('id on updating: ${studentModel.id}');
-          if (formKey.currentState!.validate()) {
-            studentController.updateStudent(StudentModel(
-              id: studentModel.id,
-              name: nameController.text,
-              dob: dobController.text,
-              gender: genderController.text,
-              phoneNumber: phoneNumberController.text,
-              emailAddress: emailController.text,
-              homeAddress: homeAddressController.text,
-              profile: imagePickerController.image.value.path == ''
-                  ? Get.arguments.profile
-                  : imagePickerController.image.value.path,
-              department: departmentController.text,
-              admissionDate: admissonDateController.text,
-              studentId: studentIdController.text,
-              rollNumber: rollNumberController.text,
-              studentClass: studentClassController.text,
-            ));
-            Get.back();
-            kGetSnackbar('Updated successfully');
-          } else {
-            kGetSnackbar('Must fill all fields including image');
-          }
-        },
-        child: const Text(
-          'Update',
-          style: TextStyle(
-            color: kWhiteColor,
-            fontSize: 15,
+        floatingActionButton: MaterialButton(
+          minWidth: kGetWidth * 0.25,
+          height: kGetHeight * 0.07,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          color: kDarkBlue,
+          onPressed: () {
+            debugPrint('id on updating: ${studentModel.id}');
+            if (formKey.currentState!.validate()) {
+              studentController.updateStudent(StudentModel(
+                id: studentModel.id,
+                name: nameController.text,
+                dob: dobController.text,
+                gender: genderController.text,
+                phoneNumber: phoneNumberController.text,
+                emailAddress: emailController.text,
+                profile: imagePickerController.image.value.path == ''
+                    ? Get.arguments.profile
+                    : imagePickerController.image.value.path,
+                department: departmentController.text,
+                rollNumber: rollNumberController.text,
+                studentClass: studentClassController.text,
+              ));
+              Get.back();
+              kGetSnackbar('Updated successfully');
+            } else {
+              kGetSnackbar('Must fill all fields including image');
+            }
+          },
+          child: const Text(
+            'Update',
+            style: TextStyle(
+              color: kWhiteColor,
+              fontSize: 15,
+            ),
           ),
         ),
       ),

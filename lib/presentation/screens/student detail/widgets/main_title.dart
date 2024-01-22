@@ -42,10 +42,10 @@ class MainTitle extends StatelessWidget {
             color: kDarkBlue,
             borderRadius: BorderRadius.circular(10),
           ),
-          child: const Column(
+          child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 'Class',
                 style: TextStyle(
                   color: kWhiteColor,
@@ -54,8 +54,8 @@ class MainTitle extends StatelessWidget {
                 ),
               ),
               Text(
-                '10',
-                style: TextStyle(
+                studentModel.studentClass!,
+                style: const TextStyle(
                   height: 1.2,
                   fontSize: 22,
                   color: kWhiteColor,

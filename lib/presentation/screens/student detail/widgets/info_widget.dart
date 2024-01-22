@@ -5,12 +5,11 @@ import 'package:flutter_application_1/data/model/student.dart';
 import 'package:flutter_application_1/presentation/screens/add%20student/widgets/sub_heading.dart';
 
 class InfoWidget extends StatelessWidget {
-  const InfoWidget({
-    super.key,
-    required this.heading,
-    required this.heading2,
-    required this.studentModel
-  });
+  const InfoWidget(
+      {super.key,
+      required this.heading,
+      required this.heading2,
+      required this.studentModel});
 
   final String heading;
   final String heading2;
@@ -52,10 +51,6 @@ class InfoWidget extends StatelessWidget {
           color: kDarkBlue,
         ),
         kHeight(kGetHeight * 0.01),
-        _detailListTile(
-          title: 'Admission Date',
-          trailing: studentModel.admissionDate,
-        ),
         _detailListTile(
           title: 'Roll no.',
           trailing: studentModel.rollNumber,

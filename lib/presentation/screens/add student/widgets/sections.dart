@@ -9,8 +9,6 @@ import 'package:get/get.dart';
 
 Column otherDetailSection({
   required TextEditingController departmentController,
-  required TextEditingController admissonDateController,
-  required TextEditingController studentIdController,
   required TextEditingController rollNumberController,
   required TextEditingController studentClassController,
 }) {
@@ -48,7 +46,6 @@ Column personalInfoSection({
   required TextEditingController genderController,
   required TextEditingController phoneNumberController,
   required TextEditingController emailController,
-  required TextEditingController homeAddressController,
 }) {
   return Column(
     crossAxisAlignment: CrossAxisAlignment.start,

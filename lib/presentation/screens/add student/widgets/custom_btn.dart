@@ -14,10 +14,7 @@ class CustomAddButton extends StatelessWidget {
     required this.genderController,
     required this.phoneNumberController,
     required this.emailController,
-    required this.homeAddressController,
     required this.departmentController,
-    required this.admissonDateController,
-    required this.studentIdController,
     required this.rollNumberController,
     required this.studentClassController,
     required this.formkey,
@@ -28,10 +25,7 @@ class CustomAddButton extends StatelessWidget {
   final TextEditingController genderController;
   final TextEditingController phoneNumberController;
   final TextEditingController emailController;
-  final TextEditingController homeAddressController;
   final TextEditingController departmentController;
-  final TextEditingController admissonDateController;
-  final TextEditingController studentIdController;
   final TextEditingController rollNumberController;
   final TextEditingController studentClassController;
   final GlobalKey<FormState> formkey;
@@ -50,7 +44,7 @@ class CustomAddButton extends StatelessWidget {
       color: kDarkBlue,
       onPressed: () {
         int id = DateTime.now().millisecondsSinceEpoch;
-        print('id on adding: $id');
+        debugPrint('id on adding: $id');
         if (formkey.currentState!.validate() &&
             imagePickerController.image.value.path != '') {
           studentController.addStudent(StudentModel(
@@ -60,11 +54,8 @@ class CustomAddButton extends StatelessWidget {
             gender: genderController.text,
             phoneNumber: phoneNumberController.text,
             emailAddress: emailController.text,
-            homeAddress: homeAddressController.text,
             profile: imagePickerController.image.value.path,
             department: departmentController.text,
-            admissionDate: admissonDateController.text,
-            studentId: studentIdController.text,
             rollNumber: rollNumberController.text,
             studentClass: studentClassController.text,
           ));

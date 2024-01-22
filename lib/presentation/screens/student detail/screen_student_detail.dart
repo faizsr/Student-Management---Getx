@@ -55,7 +55,7 @@ class ScreenStudentDetail extends StatelessWidget {
                         .deleteStudent(studentController.allStudent[index].id!);
                     Get.back();
 
-                    print('id on deleting: ${studentController.allStudent[index].id!}');
+                    debugPrint('id on deleting: ${studentController.allStudent[index].id!}');
                   },
                   text: 'Remove Profile',
                 ),

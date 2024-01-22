@@ -20,12 +20,9 @@ class ScreenAddStudent extends StatelessWidget {
   final genderController = TextEditingController();
   final phoneNumberController = TextEditingController();
   final emailController = TextEditingController();
-  final homeAddressController = TextEditingController();
   final departmentController = TextEditingController();
-  final admissonDateController = TextEditingController();
   final rollNumberController = TextEditingController();
   final studentClassController = TextEditingController();
-  final studentIdController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -61,15 +58,12 @@ class ScreenAddStudent extends StatelessWidget {
                   genderController: genderController,
                   phoneNumberController: phoneNumberController,
                   emailController: emailController,
-                  homeAddressController: homeAddressController,
                 ),
                 kHeight(kGetHeight * 0.04),
                 otherDetailSection(
                   departmentController: departmentController,
-                  admissonDateController: admissonDateController,
                   rollNumberController: rollNumberController,
                   studentClassController: studentClassController,
-                  studentIdController: studentIdController,
                 ),
                 kHeight(kGetHeight * 0.02),
               ],
@@ -83,10 +77,7 @@ class ScreenAddStudent extends StatelessWidget {
         genderController: genderController,
         phoneNumberController: phoneNumberController,
         emailController: emailController,
-        homeAddressController: homeAddressController,
         departmentController: departmentController,
-        admissonDateController: admissonDateController,
-        studentIdController: studentIdController,
         rollNumberController: rollNumberController,
         studentClassController: studentClassController,
         formkey: formKey,

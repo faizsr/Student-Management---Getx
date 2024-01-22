@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_application_1/core/assets.dart';
+import 'package:flutter_application_1/core/colors.dart';
 import 'package:flutter_application_1/core/constants.dart';
 import 'package:get/get.dart';
 
@@ -23,7 +24,8 @@ class MainScreen extends StatelessWidget {
                         Get.isDarkMode ? ThemeMode.light : ThemeMode.dark);
                   },
                   child: const CircleAvatar(
-                    child: Icon(Icons.dark_mode_rounded),
+                    backgroundColor: kAqua,
+                    child: Icon(Icons.dark_mode_rounded,color: kDarkBlue,),
                   ),
                 ),
               ),

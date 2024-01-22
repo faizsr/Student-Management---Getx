@@ -14,7 +14,7 @@ class StudentController extends GetxController {
   }
 
   fetchAllStudent({String? query}) async {
-    var student = await studentRepository.getData(query?? '');
+    var student = await studentRepository.getData(query ?? '');
     allStudent.value = student;
   }
 
