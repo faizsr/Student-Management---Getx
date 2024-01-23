@@ -3,7 +3,7 @@ import 'package:flutter_application_1/data/repository/student_repository.dart';
 import 'package:get/get.dart';
 
 class StudentController extends GetxController {
-  var allStudent = <StudentModel>[].obs;
+  RxList<StudentModel> allStudent = <StudentModel>[].obs;
 
   StudentRepository studentRepository = StudentRepository();
 
@@ -12,6 +12,7 @@ class StudentController extends GetxController {
     super.onInit();
     fetchAllStudent();
   }
+
 
   fetchAllStudent({String? query}) async {
     var student = await studentRepository.getData(query ?? '');
